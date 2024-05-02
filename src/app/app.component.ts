@@ -56,19 +56,28 @@ export class AppComponent {
 
   onDashboardClick() {
     this.router.navigate(['/dashboard'])
-    if(this.sideNav) {
-      this.sideNav.close();
-    }
+    this.closeSideNave()
   }
 
   onHomeClicked() {
     this.router.navigate(['/'])
-    if(this.sideNav) {
-      this.sideNav.close();
-    }
+    this.closeSideNave()
   }
 
   onLogoutClicked() {
+
+  }
+
+  onLoginClicked() {
+    this.router.navigate(['/login']);
+    this.closeSideNave();
+  }
+
+  onSignUpClicked() {
+
+  }
+
+  private closeSideNave() {
     if(this.sideNav) {
       this.sideNav.close();
     }
