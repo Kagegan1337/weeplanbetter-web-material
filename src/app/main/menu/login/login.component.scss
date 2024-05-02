@@ -1,0 +1,11 @@
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+.background-image {
+  background-color: mat.get-color-from-palette(mat.$indigo-palette,500);
+}
+
+.list-item {
+  font-size: 4rem;
+}

@@ -1,0 +1,23 @@
+<div class="flex justify-content-center align-items-center h-full">
+  <div class="flex flex-column align-items-center border-2 border-round-xl px-4">
+    <div class="justify-content-center pt-2">
+        <img src="assets/svg/wpb-logo.svg" style="width: 100%; height: auto;">
+    </div>
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Username">
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-hint>Username</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input [type]="isPassword? 'password':'text'" matInput placeholder="Password">
+        <mat-icon matSuffix (click)="togglePassword()">{{isPassword? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-hint>Password</mat-hint>
+      </mat-form-field>
+    </p>
+  </div>
+</div>
