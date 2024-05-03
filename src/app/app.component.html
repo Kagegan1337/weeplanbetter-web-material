@@ -28,10 +28,26 @@
         </button>
       </mat-toolbar>
       <mat-nav-list>
-        <mat-list-item class="list-item" (click)="onHomeClicked()">Home</mat-list-item>
-        <mat-list-item class="font-bold text-2xl" (click)="onDashboardClick()">Dashboard</mat-list-item>
-        <mat-list-item class="font-bold text-2xl" (click)="onLogoutClicked()">Logout</mat-list-item>
-        <mat-list-item class="font-bold text-2xl" (click)="onLoginClicked()">Login</mat-list-item>
+        <mat-list-item class="text-center" (click)="onHomeClicked()">
+          <span class="text-2xl font-bold ">
+            Home
+          </span>
+        </mat-list-item>
+        <mat-list-item class="text-center" (click)="onDashboardClick()">
+          <span class="text-2xl font-bold">
+            Dashboard
+          </span>
+        </mat-list-item>
+        <mat-list-item class="text-center" (click)="onLogoutClicked()">
+          <span class="text-2xl font-bold">
+            Logout
+          </span>
+        </mat-list-item>
+        <mat-list-item class="text-center" (click)="onLoginClicked()">
+          <span class="text-2xl font-bold">
+            Login
+          </span>
+        </mat-list-item>
       </mat-nav-list>
     </mat-sidenav>
     <!-- Your content goes here -->

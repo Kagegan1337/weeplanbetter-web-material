@@ -6,6 +6,6 @@
   background-color: mat.get-color-from-palette(mat.$indigo-palette,500);
 }
 
-.list-item {
-  font-size: 4rem;
+:host ::ng-deep .mat-list-item-content {
+  font-size: 5rem;
 }
