@@ -1,35 +1,81 @@
-<div *ngIf="(isHandset$ | async) === false" class="h-full w-full">
-  <mat-toolbar color="primary" *ngIf="(isHandset$ | async) === false">
-    <button mat-button [matMenuTriggerFor]="menu">Menu</button>
-    <button mat-button (click)="onLoginClicked()">Login</button>
-    <button mat-button (click)="onSignUpClicked()">SignUp</button>
-    <button mat-button (click)="onLogoutClicked()">Logout</button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="onDashboardClick()">Dashboard</button>
-      <button mat-menu-item (click)="onHomeClicked()">Home</button>
-      <button mat-menu-item (click)="onLogoutClicked()">Logout</button>
-    </mat-menu>
+<div *ngIf="(isHandset$ | async) === false && !isLoggedIn()" class="h-full w-full">
+  <mat-toolbar color="primary" *ngIf="(isHandset$ | async) === false" class="flex justify-content-between">
+    <div>
+      <button mat-button (click)="onLoginClicked()">Login</button>
+      <button mat-button (click)="onSignUpClicked()">SignUp</button>
+    </div>
+    <h1>Wee plan better</h1>
+    <span></span>
   </mat-toolbar>
   <router-outlet></router-outlet>
 </div>
 
-<div *ngIf="(isHandset$ | async) === true" class="h-full w-full">
+<div *ngIf="(isHandset$ | async) === false && isLoggedIn()" class="h-full w-full">
   <mat-sidenav-container class="h-full w-full">
-    <mat-toolbar color="primary" class="example-toolbar">
+    <mat-toolbar color="primary">
       <button mat-icon-button (click)="sidenav.open()">
         <mat-icon>menu</mat-icon>
       </button>
-      <h1 class="example-app-name">Responsive App</h1>
+      <h1>Wee plan better</h1>
+    </mat-toolbar>
+    <mat-sidenav #sidenav>
+      <mat-toolbar color="primary">
+        <span (click)="onProfileClicked()" class="flex flex-row justify-content-between align-content-center">
+          <img src="assets/svg/material_photo_camera.svg" class="w-2rem h-2rem border-circle border-red-50 mr-2">
+          {{username()}}
+        </span>
+      </mat-toolbar>
+      <mat-nav-list class="flex flex-column justify-content-between">
+        <mat-list-item (click)="onHomeClicked()">
+          <span class="text-2xl font-bold ">
+            Home
+          </span>
+        </mat-list-item>
+        <mat-list-item (click)="onDashboardClick()">
+          <span class="text-2xl font-bold">
+            Dashboard
+          </span>
+        </mat-list-item>
+        <mat-list-item (click)="onSettingsClicked()">
+          <span class="text-2xl font-bold">
+            Settings
+          </span>
+        </mat-list-item>
+        <mat-list-item (click)="onProfileClicked()">
+          <span class="text-2xl font-bold">
+            Profile
+          </span>
+        </mat-list-item>
+        <mat-list-item (click)="onLogoutClicked()">
+          <span class="text-2xl font-bold">
+            Logout
+          </span>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+    <div class="h-full">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-container>
+</div>
+
+<div *ngIf="(isHandset$ | async) === true" class="h-full w-full">
+  <mat-sidenav-container class="h-full w-full">
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenav.open()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <h1>Wee plan better</h1>
     </mat-toolbar>
     <mat-sidenav #sidenav class="w-full">
-      <mat-toolbar color="primary" class="example-toolbar">
+      <mat-toolbar color="primary">
         <button mat-icon-button (click)="sidenav.close()">
           <mat-icon>menu</mat-icon>
         </button>
       </mat-toolbar>
       <mat-nav-list>
         <mat-list-item class="text-center" (click)="onHomeClicked()">
-          <span class="text-2xl font-bold ">
+          <span class="text-2xl font-bold">
             Home
           </span>
         </mat-list-item>
@@ -48,10 +94,17 @@
             Login
           </span>
         </mat-list-item>
+        <mat-list-item class="text-center" (click)="onSignUpClicked()">
+          <span class="text-2xl font-bold">
+            SignUp
+          </span>
+        </mat-list-item>
       </mat-nav-list>
     </mat-sidenav>
     <!-- Your content goes here -->
-    <router-outlet></router-outlet>
+    <div class="h-full">
+      <router-outlet></router-outlet>
+    </div>
   </mat-sidenav-container>
 </div>
 

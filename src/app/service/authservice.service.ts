@@ -40,7 +40,6 @@ export class AuthserviceService {
   expirationCounter(timeout: number) {
     this.tokenSubscription.unsubscribe();
     this.tokenSubscription = of(null).pipe(delay(timeout)).subscribe((expired) => {
-      console.log('EXPIRED!!');
       this.logout();
       this.router.navigate(["/login"]);
     });
@@ -58,6 +57,16 @@ export class AuthserviceService {
   }
 
   getUsertoken() {
-    return localStorage.getItem(this.authKey);
+    let token = sessionStorage.getItem(this.authKey);
+    if(token === null) {
+      return ""
+    } else {
+      return token!;
+    }
+  }
+
+  getUsername() {
+    let decoded = this.jwtHelper.decodeToken(this.getUsertoken());
+    return decoded.sub;
   }
 }

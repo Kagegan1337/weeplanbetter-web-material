@@ -7,7 +7,8 @@ import {MatButtonModule} from "@angular/material/button";
 import {UserService} from "../../../service/user.service";
 import {AuthserviceService} from "../../../service/authservice.service";
 import {Router} from "@angular/router";
-import {NgIf} from "@angular/common";
+import {NgIf, NgOptimizedImage} from "@angular/common";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,9 @@ import {NgIf} from "@angular/common";
     MatInputModule,
     MatToolbarModule,
     MatButtonModule,
-    NgIf
+    NgIf,
+    FormsModule,
+    NgOptimizedImage
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'

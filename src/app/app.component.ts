@@ -15,6 +15,8 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatListModule} from "@angular/material/list";
 import {MatMenuModule} from "@angular/material/menu";
 import {HttpClientModule} from "@angular/common/http";
+import {UserService} from "./service/user.service";
+import {AuthserviceService} from "./service/authservice.service";
 
 @Component({
   selector: 'app-root',
@@ -44,10 +46,12 @@ export class AppComponent {
   title = 'weeplanbetter-web-angular';
 
   @ViewChild('sidenav')
-  private sideNav? : MatSidenav
+  private sideNav?: MatSidenav
 
   constructor(private breakpointObserver: BreakpointObserver,
-              private router: Router) {
+              private router: Router,
+              private userservice: UserService,
+              private authService: AuthserviceService,) {
 
   }
 
@@ -65,7 +69,8 @@ export class AppComponent {
   }
 
   onLogoutClicked() {
-
+    this.authService.logout();
+    this.userservice.postLogout();
   }
 
   onLoginClicked() {
@@ -74,12 +79,30 @@ export class AppComponent {
   }
 
   onSignUpClicked() {
-
+    this.router.navigate(['/signup'])
+    this.closeSideNave();
   }
 
   private closeSideNave() {
-    if(this.sideNav) {
+    if (this.sideNav) {
       this.sideNav.close();
     }
+  }
+
+  isLoggedIn() {
+    return this.authService.isAuthenticated()
+  }
+
+  username() {
+    return this.authService.getUsername()
+  }
+
+  onProfileClicked() {
+    this.router.navigate(['/profile']);
+    this.closeSideNave();
+  }
+
+  onSettingsClicked() {
+
   }
 }

@@ -1,13 +1,13 @@
 <div class="flex justify-content-center align-items-center h-full">
   <div class="flex flex-column align-items-center border-2 border-round-xl px-4">
-    <div class="justify-content-center pt-2">
-      <img src="assets/svg/wpb-logo.svg" style="width: 100%; height: auto;">
+    <div class="justify-content-center pt-2 w-10rem h-auto">
+      <img src="assets/svg/WePlanBetter_Logo.svg" srcset="assets/svg/WePlanBetter_Logo.svg" sizes="100rem">
     </div>
     <div class="flex flex-column align-items-center justify-content-center">
       <p>
         <mat-form-field appearance="fill">
           <mat-label>Username</mat-label>
-          <input matInput placeholder="Username">
+          <input [(ngModel)]="userName" matInput placeholder="Username">
           <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
           <mat-hint>Username</mat-hint>
         </mat-form-field>
@@ -15,7 +15,7 @@
       <p>
         <mat-form-field appearance="fill">
           <mat-label>Password</mat-label>
-          <input [type]="isPassword? 'password':'text'" matInput placeholder="Password">
+          <input [(ngModel)]="password" [type]="isPassword? 'password':'text'" matInput placeholder="Password">
           <mat-icon matSuffix (click)="togglePassword()">{{ isPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
           <mat-hint>Password</mat-hint>
           <mat-error *ngIf="userError">Wrong Username or Password</mat-error>
@@ -28,7 +28,7 @@
     </div>
     <div class="flex flex-row justify-content-between py-2 w-full">
       <button mat-raised-button>Sign-In</button>
-      <button mat-raised-button color="primary">Login</button>
+      <button mat-raised-button (click)="login()" color="primary">Login</button>
     </div>
   </div>
 </div>
