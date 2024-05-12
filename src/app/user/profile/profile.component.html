@@ -1,3 +1,18 @@
 <div class="flex justify-content-center align-items-center align-content-center py-4">
-  
+  <div class="flex flex-column justify-content-center align-content-center align-items-center w-full mt-5"
+       *ngIf="(isHandset$ | async) === false">
+    <h1>Profil</h1>
+    <div class="border-2 border-black-alpha-90 w-10 border-round-md relative">
+      <img src="assets/img/fallback.jpg" class="profil-img absolute absolute-position" alt="Profile image">
+      <div class="flex w-full justify-content-center">
+        <div class="flex flex-column w-10 justify-content-start">
+          <p class="text-center font-bold text-xl"> {{ username() }}</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="" *ngIf="(isHandset$ | async) === true">
+    <h1>Profil</h1>
+  </div>
 </div>
