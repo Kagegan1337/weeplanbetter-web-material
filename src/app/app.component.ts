@@ -105,4 +105,9 @@ export class AppComponent {
   onSettingsClicked() {
 
   }
+
+  onEventsClick() {
+    this.router.navigate(['/events'])
+    this.closeSideNave();
+  }
 }
