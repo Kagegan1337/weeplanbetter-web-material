@@ -66,8 +66,8 @@ export class AuthserviceService {
   }
 
   getUserIdFromToken() {
-    let id = this.jwtHelper.decodeToken(this.getUsername());
-    return id.valueOf("accountId")
+    let id = this.jwtHelper.decodeToken(this.getUsertoken());
+    return id.accountId;
   }
 
   getUsername() {

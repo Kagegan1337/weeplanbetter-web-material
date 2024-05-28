@@ -5,13 +5,14 @@ import {LoginRequest} from "../model/login-request";
 import {LoginResponse} from "../model/login-response";
 import {SignUpRequest} from "../model/sign-in-request";
 import {SignUpResponse} from "../model/sign-up-response";
+import {environment} from "../enviroment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private baseUrl = "http://localhost:8080"
+  private baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {
   }
@@ -24,7 +25,7 @@ export class UserService {
     return this.http.post<SignUpResponse>(`${this.baseUrl}/user/signup`, request);
   }
 
-  postLogout() {
-    return this.http.post(`${this.baseUrl}/user/logout`, null);
+  putLogout() {
+    return this.http.put(`${this.baseUrl}/user/logout`, null);
   }
 }

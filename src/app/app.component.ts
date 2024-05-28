@@ -69,8 +69,15 @@ export class AppComponent {
   }
 
   onLogoutClicked() {
-    this.authService.logout();
-    this.userservice.postLogout();
+    this.userservice.putLogout().subscribe({
+      next: value => {
+        this.authService.logout();
+        this.router.navigate(['/'])
+      },
+      error: err => {
+
+      }
+    });
   }
 
   onLoginClicked() {
