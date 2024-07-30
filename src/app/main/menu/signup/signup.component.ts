@@ -133,7 +133,7 @@ export class SignupComponent {
           telBusiness: formValue.person.telPrivate!,
           privateAddress: {
             country: formValue.person.privateAddress.country!,
-            zipcode: formValue.person.privateAddress.zipcode!,
+            zip: formValue.person.privateAddress.zipcode!,
             city: formValue.person.privateAddress.city!,
             street: formValue.person.privateAddress.street!,
             addition: formValue.person.privateAddress.addition!,
@@ -141,7 +141,7 @@ export class SignupComponent {
           },
           invoiceAddress: {
             country: formValue.person.privateAddress.country!,
-            zipcode: formValue.person.privateAddress.zipcode!,
+            zip: formValue.person.privateAddress.zipcode!,
             city: formValue.person.privateAddress.city!,
             street: formValue.person.privateAddress.street!,
             addition: formValue.person.privateAddress.addition!,
@@ -154,7 +154,6 @@ export class SignupComponent {
           isBusiness: accountFormValue.accountDto.isBusiness!
         }
       };
-      console.log(signUpRequest);
       this.userService.postSignInRequest(signUpRequest)
         .subscribe({
           next: value => {

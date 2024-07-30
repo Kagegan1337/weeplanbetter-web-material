@@ -24,7 +24,7 @@ export interface AccountDto {
 
 export interface AddressDto {
   country: string;
-  zipcode: string;
+  zip: string;
   city: string;
   street: string;
   addition: string;

@@ -3,25 +3,28 @@
     <div class="justify-content-center pt-2 w-10rem h-auto">
       <img src="assets/svg/WePlanBetter_Logo.svg" srcset="assets/svg/WePlanBetter_Logo.svg" sizes="100rem">
     </div>
-    <div class="flex flex-column align-items-center justify-content-center">
-      <p>
-        <mat-form-field appearance="fill">
-          <mat-label>Username</mat-label>
-          <input [(ngModel)]="userName" matInput placeholder="Username">
-          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-          <mat-hint>Username</mat-hint>
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="fill">
-          <mat-label>Password</mat-label>
-          <input [(ngModel)]="password" [type]="isPassword? 'password':'text'" matInput placeholder="Password">
-          <mat-icon matSuffix (click)="togglePassword()">{{ isPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-          <mat-hint>Password</mat-hint>
-          <mat-error *ngIf="userError">Wrong Username or Password</mat-error>
-        </mat-form-field>
-      </p>
-    </div>
+    <form [formGroup]="fgLogin">
+      <div class="flex flex-column align-items-center justify-content-center" (keyup.enter)="login()">
+        <p>
+          <mat-form-field appearance="fill">
+            <mat-label>Username</mat-label>
+            <input formControlName="username" matInput placeholder="Username" >
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-hint>Username</mat-hint>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input formControlName="password" [type]="isPassword? 'password':'text'" matInput placeholder="Password">
+            <mat-icon matSuffix (click)="togglePassword()">{{ isPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            <mat-hint>Password</mat-hint>
+            <mat-error *ngIf="userError">Wrong Username or Password</mat-error>
+          </mat-form-field>
+        </p>
+      </div>
+    </form>
+
     <div class="w-full flex justify-content-between">
       <a class="py-1" (click)="forgotPassword()">Recover Password...</a>
       <span></span>

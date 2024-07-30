@@ -1,5 +1,4 @@
-<section class="flex justify-content-center align-content-center">
-  <div *ngIf="events.length == 0" class="flex justify-content-center w-30rem h-30rem mt-7">
-    <img src="assets/img/mauli_warten.png" style="object-fit: scale-down">
-  </div>
+<section *ngIf="events.length == 0" class="flex flex-column flex-wrap justify-content-center align-items-center">
+  <app-empty></app-empty>
+  <button mat-flat-button color="primary" (click)="openEventCreationDialog()" class="mt-2 w-2">Neues Event</button>
 </section>
