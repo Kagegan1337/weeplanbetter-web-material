@@ -19,14 +19,14 @@ export class UserService {
   }
 
   postLoginRequest(request: LoginRequest) {
-    return this.http.post<LoginResponse>(`${this.baseUrl}/user/login`, request);
+    return this.http.post<LoginResponse>(`${this.baseUrl}/api/v1/user/login`, request);
   }
 
   postSignInRequest(request: SignUpRequest) {
-    return this.http.post<SignUpResponse>(`${this.baseUrl}/user/signup`, request);
+    return this.http.post<SignUpResponse>(`${this.baseUrl}/api/v1/user/register`, request);
   }
 
   putLogout() {
-    return this.http.put(`${this.baseUrl}/user/logout`, null);
+    return this.http.put(`${this.baseUrl}/api/v1/user/logout`, null);
   }
 }
