@@ -7,6 +7,8 @@ import {SignUpRequest} from "../model/sign-in-request";
 import {SignUpResponse} from "../model/sign-up-response";
 import {environment} from "../enviroment";
 import {UserSearchDto} from "../model/user/user-search-dto";
+import {SignInRequest} from "../model/request/sign-in-request";
+import {SignInResponse} from "../model/response/sign-in-response";
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +26,10 @@ export class UserService {
 
   postSignInRequest(request: SignUpRequest) {
     return this.http.post<SignUpResponse>(`${this.baseUrl}/api/v1/user/register`, request);
+  }
+
+  postSignInRequest2(request:SignInRequest) {
+    return this.http.post<SignInResponse>(`${this.baseUrl}/api/v1/user/signin`,request)
   }
 
   putLogout() {
