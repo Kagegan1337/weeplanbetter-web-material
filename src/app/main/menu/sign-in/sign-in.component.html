@@ -9,7 +9,7 @@
         <!--    username-->
         <mat-form-field appearance="fill">
           <mat-label>Username</mat-label>
-          <input matInput formControlName="username" placeholder="iamawesome">
+          <input matInput #ipUsername formControlName="username" placeholder="iamawesome">
           <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         </mat-form-field>
         <!--    email-->
@@ -30,14 +30,14 @@
 
         <mat-form-field appearance="fill">
           <mat-label>Confirm</mat-label>
-          <input matInput [type]="isConfirmPassword ? 'password' : 'text'" placeholder="Confirm Secret">
-          <mat-icon matSuffix (click)="togglePassword()">{{ isConfirmPassword ? 'visibility_off' : 'visibility' }}
+          <input matInput formControlName="confirmPassword" [type]="isConfirmPassword ? 'password' : 'text'" placeholder="Confirm Secret">
+          <mat-icon matSuffix (click)="toggleConfirmPassword()">{{ isConfirmPassword ? 'visibility_off' : 'visibility' }}
           </mat-icon>
           <mat-error *ngIf="isSamePassword()">wubdiwub</mat-error>
         </mat-form-field>
         <div class="w-full flex flex-row justify-content-between pb-2">
           <span></span>
-          <button mat-raised-button color="primary" (click)="signIn()">
+          <button mat-raised-button color="primary" (click)="signIn()" [disabled]="!isValid()">
             <mat-icon>check</mat-icon>
             <span>Sign-In</span>
           </button>
