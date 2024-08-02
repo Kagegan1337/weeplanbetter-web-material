@@ -1,4 +1,4 @@
-<div class="w-full h-full flex justify-content-center align-content-center align-items-center">
+<div *ngIf="isLogin()" class="w-full h-full flex justify-content-center align-content-center align-items-center">
   <form [formGroup]="fgSignIn" (keyup.enter)="signIn()">
     <!--  Desktop View-->
     <div *ngIf="(isHandset$ | async) === false"
@@ -44,10 +44,11 @@
         </div>
       </div>
     </div>
+
     <!--  Mobile View-->
     <div *ngIf="(isHandset$ | async) === true">
-
     </div>
   </form>
-
 </div>
+
+<app-success *ngIf="getUsername()!== null && !isLogin()" [user]="getUsername()"></app-success>

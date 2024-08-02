@@ -3,10 +3,7 @@ import {AuthserviceService} from "./authservice.service";
 import {HttpClient} from "@angular/common/http";
 import {LoginRequest} from "../model/login-request";
 import {LoginResponse} from "../model/login-response";
-import {SignUpRequest} from "../model/sign-in-request";
-import {SignUpResponse} from "../model/sign-up-response";
 import {environment} from "../enviroment";
-import {UserSearchDto} from "../model/user/user-search-dto";
 import {SignInRequest} from "../model/request/sign-in-request";
 import {SignInResponse} from "../model/response/sign-in-response";
 
@@ -22,10 +19,6 @@ export class UserService {
 
   postLoginRequest(request: LoginRequest) {
     return this.http.post<LoginResponse>(`${this.baseUrl}/api/v1/user/login`, request);
-  }
-
-  postSignInRequest(request: SignUpRequest) {
-    return this.http.post<SignUpResponse>(`${this.baseUrl}/api/v1/user/register`, request);
   }
 
   postSignInRequest2(request:SignInRequest) {

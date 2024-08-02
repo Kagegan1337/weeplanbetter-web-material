@@ -9,6 +9,7 @@ import {MatIcon, MatIconModule} from "@angular/material/icon";
 import {UserService} from "../../../service/user.service";
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {Router} from "@angular/router";
+import {SuccessComponent} from "../../../dialogs/success/success.component";
 
 @Component({
   selector: 'app-sign-in',
@@ -22,6 +23,7 @@ import {Router} from "@angular/router";
     MatIconModule,
     MatIconButton,
     MatButton,
+    SuccessComponent,
 
   ],
   templateUrl: './sign-in.component.html',
@@ -36,6 +38,7 @@ export class SignInComponent {
   //variables
   protected isEnterPassword: boolean = true;
   protected isConfirmPassword: boolean = true;
+  protected login: boolean = true;
 
   //forms
   fgSignIn = new FormGroup({
@@ -68,7 +71,7 @@ export class SignInComponent {
     if(username !== null && password !== null && email !== null) {
       this.userService.postSignInRequest2({username: username, password: password, email: email}).subscribe({
         next: value => {
-          this.router.navigate(['/login'])
+          this.login = false;
         },
         error: err => {
 
@@ -90,5 +93,8 @@ export class SignInComponent {
   }
 
 
+  isLogin() {
+    return this.login;
+  }
 }
 
