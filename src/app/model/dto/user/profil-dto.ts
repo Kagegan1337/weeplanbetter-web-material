@@ -7,4 +7,5 @@ export interface ProfilDto {
   verified: boolean;
   since: string;
   role: number;
+  publicTransparency: boolean;
 }

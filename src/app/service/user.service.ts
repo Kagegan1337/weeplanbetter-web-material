@@ -22,8 +22,8 @@ export class UserService {
     return this.http.post<LoginResponse>(`${this.baseUrl}/api/v1/user/login`, request);
   }
 
-  postSignInRequest(request:SignInRequest) {
-    return this.http.post<SignInResponse>(`${this.baseUrl}/api/v1/user/signin`,request)
+  postSignInRequest(request: SignInRequest) {
+    return this.http.post<SignInResponse>(`${this.baseUrl}/api/v1/user/signin`, request)
   }
 
   putLogout() {
@@ -31,8 +31,15 @@ export class UserService {
   }
 
   getLoadUserData(accountId: string) {
-    let params : HttpParams = new HttpParams();
+    let params: HttpParams = new HttpParams();
     params = params.set("accountId", accountId);
-    return this.http.get<ProfilDto>(`${this.baseUrl}/api/v1/user/profile`,{params})
+    return this.http.get<ProfilDto>(`${this.baseUrl}/api/v1/user/profile`, {params})
+  }
+
+  putUpdatePublicTransparency(value: boolean, accountId: string) {
+    let params: HttpParams = new HttpParams();
+    params = params.set("accountId", accountId);
+    params = params.set("transparency", value);
+    return this.http.put(`${this.baseUrl}/api/v1/user/transparency`, {}, {params});
   }
 }

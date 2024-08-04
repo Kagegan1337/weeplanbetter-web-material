@@ -6,14 +6,13 @@ import {map} from "rxjs";
 import {AuthserviceService} from "../../service/authservice.service";
 import {UserService} from "../../service/user.service";
 import {ProfilDto} from "../../model/dto/user/profil-dto";
-import {MatDivider, MatDividerModule} from "@angular/material/divider";
-import {SectionComponent} from "../../components/base/section/section.component";
+import {MatDividerModule} from "@angular/material/divider";
 import {BreakpointResolverService} from "../../util/ui/breakpoint-resolver.service";
 import {HorizontalLineComponent} from "../../components/base/horizontal-line/horizontal-line.component";
-import {MatBadge, MatBadgeModule} from "@angular/material/badge";
+import { MatBadgeModule} from "@angular/material/badge";
 import {MatDialog} from "@angular/material/dialog";
-import {LoginFailureDialogComponent} from "../../dialogs/login-failure-dialog/login-failure-dialog.component";
 import {LoadingDialogComponent} from "../../dialogs/loading-dialog/loading-dialog.component";
+import {MatSlideToggle, MatSlideToggleModule} from "@angular/material/slide-toggle";
 
 export interface AccountTier {
   name: string;
@@ -36,12 +35,12 @@ export enum AccountTierType {
     NgIf,
     AsyncPipe,
     MatDividerModule,
-    SectionComponent,
     HorizontalLineComponent,
     MatBadgeModule,
     NgClass,
     NgStyle,
     DatePipe,
+    MatSlideToggleModule,
 
   ],
   templateUrl: './profile.component.html',
@@ -60,6 +59,10 @@ export class ProfileComponent {
   protected profile : ProfilDto = {} as ProfilDto;
 
   ngOnInit() {
+    this.loadUserData();
+  }
+
+  loadUserData() {
     this.openDialog();
     this.userService.getLoadUserData(this.userToken).subscribe({
       next: value => {
@@ -83,7 +86,7 @@ export class ProfileComponent {
   }
 
   displayName() {
-    return "Display"
+    return this.username();
   }
 
   firstname() {
@@ -167,4 +170,16 @@ export class ProfileComponent {
     }
   }
 
+  updatePublicTransparency() {
+    console.log("changed")
+    this.userService.putUpdatePublicTransparency(!this.profile.publicTransparency, this.authService.getUserIdFromToken()).subscribe({
+      next: value => {
+        this.loadUserData()
+      }
+    });
+  }
+
+  publicTransparency() {
+    return this.profile.publicTransparency;
+  }
 }
