@@ -9,3 +9,40 @@
   left: -4rem;
   top: -4rem
 }
+
+.email-container {
+  display: inline-flex;
+  align-items: center;
+}
+
+.verification-status {
+  font-size: 0.7em;
+  margin-left: 5px;
+  padding: 2px 5px;
+  border-radius: 5px;
+  color: white;
+}
+
+.verified {
+  background-color: green;
+}
+
+.not-verified {
+  background-color: red;
+}
+
+.guest {
+  color: aqua;
+}
+
+.user {
+  color: var(--custom-primary-color)
+}
+
+.premium {
+  color: gold;
+}
+
+.admin {
+  color: cornflowerblue;
+}

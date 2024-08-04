@@ -85,7 +85,7 @@ export class SignInComponent {
     let password = this.getPassword();
     let email = this.getEmail();
     if (username !== null && password !== null && email !== null) {
-      this.userService.postSignInRequest2({username: username, password: password, email: email}).subscribe({
+      this.userService.postSignInRequest({username: username, password: password, email: email}).subscribe({
         next: value => {
           this.login = false;
         },

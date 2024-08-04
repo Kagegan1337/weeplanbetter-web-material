@@ -11,4 +11,7 @@ export class BreakpointResolverService {
 
   isHandset$ = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(map(result => result.matches));
+
+  isPhone$ = this.breakpointObserver.observe(Breakpoints.XSmall)
+    .pipe(map(result => result.matches))
 }
