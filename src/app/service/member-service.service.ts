@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {UserSearchDto} from "../model/user/user-search-dto";
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import {AuthserviceService} from "./authservice.service";
 import {environment} from "../enviroment";
 

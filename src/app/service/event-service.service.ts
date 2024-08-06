@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import {EventDto, EventOverviewDto} from "../model/dto/event/event-dto";
 import {environment} from "../enviroment";
 import {EventCreationResponseDto} from "../model/dto/event-creation-response-dto";
