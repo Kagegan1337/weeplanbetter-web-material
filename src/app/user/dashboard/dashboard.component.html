@@ -1,13 +1,33 @@
 <div class="flex flex-column align-items-center align-content-center">
-  <div class="flex flex-column w-full h-full justify-content-center m-7 dashboard">
-    <div class="flex w-full justify-content-between">
+  <div class="flex flex-column w-10">
+    <div class="flex w-full justify-content-between mt-7">
       <span></span>
       <mat-slide-toggle color="primary" checked="{{editMode}}" (change)="toggleEditMode()"></mat-slide-toggle>
     </div>
-    <div cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
-      @for (item of items; track item) {
-        <div class="example-box" cdkDrag>{{item}}</div>
-      }
+    <div cdkDropList cdkDropListOrientation="mixed" class=" w-full example-list grid" (cdkDropListDropped)="drop($event)" [cdkDropListDisabled]="!editMode">
+
+      <mat-card cdkDrag class="col-3">
+        <mat-card-content>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam</mat-card-content>
+      </mat-card>
+      <mat-card class="col-3">
+        <mat-card-content>
+          <mat-card>
+            <mat-card-content>
+              <h1>Hello World!</h1>
+            </mat-card-content>
+          </mat-card>
+        </mat-card-content>
+      </mat-card>
+      <mat-card cdkDrag class="col-3">
+        <mat-card-content>
+          <mat-calendar></mat-calendar>
+        </mat-card-content>
+      </mat-card>
+      <mat-card cdkDrag class="col-3">
+        <mat-card-content>
+          <mat-calendar></mat-calendar>
+        </mat-card-content>
+      </mat-card>
     </div>
 
   </div>
