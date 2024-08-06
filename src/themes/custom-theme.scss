@@ -25,9 +25,15 @@ $custom-theme: mat.define-light-theme((
 
 :root {
   --custom-primary-color: #{mat.get-color-from-palette($primary-palette)};
-  --primary-contrast: #{mat.get-color-from-palette($primary-palette, A100-contrast)};
-  --accent-color: #{mat.get-color-from-palette($accent-palette)};
-  --accent-contrast: #{mat.get-color-from-palette($accent-palette, A100-contrast)};
-  --warn-color: #{mat.get-color-from-palette($warn-palette)};
-  --warn-contrast: #{mat.get-color-from-palette($warn-palette, A100-contrast)};
+  --custom-primary-contrast: #{mat.get-color-from-palette($primary-palette, A100-contrast)};
+  --custom-accent-color: #{mat.get-color-from-palette($accent-palette)};
+  --custom-accent-contrast: #{mat.get-color-from-palette($accent-palette, A100-contrast)};
+  --custom-warn-color: #{mat.get-color-from-palette($warn-palette)};
+  --custom-warn-contrast: #{mat.get-color-from-palette($warn-palette, A100-contrast)};
+  --custom-body-background-color: rgba(192, 201, 248, 0.46);
+}
+
+.bg-color-headline {
+  background-color: var(--custom-primary-color);
+  color: wheat;
 }

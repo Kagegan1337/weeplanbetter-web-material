@@ -1,1 +1,15 @@
-<p>dashboard works!</p>
+<div class="flex flex-column align-items-center align-content-center">
+  <div class="flex flex-column w-full h-full justify-content-center m-7 dashboard">
+    <div class="flex w-full justify-content-between">
+      <span></span>
+      <mat-slide-toggle color="primary" checked="{{editMode}}" (change)="toggleEditMode()"></mat-slide-toggle>
+    </div>
+    <div cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
+      @for (item of items; track item) {
+        <div class="example-box" cdkDrag>{{item}}</div>
+      }
+    </div>
+
+  </div>
+</div>
+

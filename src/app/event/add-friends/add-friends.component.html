@@ -1,9 +1,0 @@
-<mat-form-field class="w-full h-full">
-  <mat-label>Add Person</mat-label>
-  <input matInput [matAutocomplete]="auto" [formControl]="myControl">
-  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-    @for (option of filterdOptions | async;track option) {
-      <mat-option [value]="option">{{ option.name }}</mat-option>
-    }
-  </mat-autocomplete>
-</mat-form-field>
