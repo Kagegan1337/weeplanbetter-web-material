@@ -3,7 +3,7 @@
 @include mat.core();
 
 .background-image {
-  background-color: mat.get-color-from-palette(mat.$indigo-palette,500);
+  background-color: mat.m2-get-color-from-palette(mat.$m2-indigo-palette,500);
 }
 
 :host ::ng-deep .mat-list-item-content {
