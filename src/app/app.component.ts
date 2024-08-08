@@ -17,12 +17,17 @@ import {MatMenuModule} from "@angular/material/menu";
 import {HttpClientModule} from "@angular/common/http";
 import {UserService} from "./service/user.service";
 import {AuthserviceService} from "./service/authservice.service";
+import {BreakpointResolverService} from "./util/ui/breakpoint-resolver.service";
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    HttpClientModule,
+
+// TODO: `HttpClientModule` should not be imported into a component directly.
+// Please refactor the code to add `provideHttpClient()` call to the provider list in the
+// application bootstrap logic and remove the `HttpClientModule` import from this component.
+HttpClientModule,
     RouterOutlet,
     AsyncPipe,
     MatButton,
@@ -48,15 +53,14 @@ export class AppComponent {
   @ViewChild('sidenav')
   private sideNav?: MatSidenav
 
-  constructor(private breakpointObserver: BreakpointObserver,
-              private router: Router,
+  constructor(private router: Router,
               private userservice: UserService,
-              private authService: AuthserviceService,) {
+              private authService: AuthserviceService,
+              private breakpointUtil: BreakpointResolverService) {
 
   }
 
-  isHandset$ = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(map(result => result.matches));
+  isHandset$ = this.breakpointUtil.isHandset$;
 
   onDashboardClick() {
     this.router.navigate(['/dashboard'])

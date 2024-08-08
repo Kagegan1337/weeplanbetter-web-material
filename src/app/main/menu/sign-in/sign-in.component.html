@@ -1,0 +1,54 @@
+<div *ngIf="isLogin()" class="w-full h-full flex justify-content-center align-content-center align-items-center">
+  <form [formGroup]="fgSignIn" (keyup.enter)="signIn()">
+    <!--  Desktop View-->
+    <div *ngIf="(isHandset$ | async) === false"
+         class="w-full h-full flex justify-content-center align-items-center align-content-center ">
+      <div
+        class="flex flex-column justify-content-center align-items-start align-content-start border-2 border-round-xl px-4">
+        <p></p>
+        <!--    username-->
+        <mat-form-field appearance="fill">
+          <mat-label>Username</mat-label>
+          <input matInput #ipUsername formControlName="username" placeholder="iamawesome">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+        <!--    email-->
+        <mat-form-field appearance="fill">
+          <mat-label>E-Mail</mat-label>
+          <input matInput formControlName="email" placeholder="iamawesome@wpb.net">
+          <mat-icon matSuffix>contact_mail</mat-icon>
+        </mat-form-field>
+        <!--    password-->
+        <mat-form-field appearance="fill">
+          <mat-label>Passwort</mat-label>
+          <input matInput formControlName="password" [type]="isEnterPassword ? 'password' : 'text'"
+                 placeholder="my-secret">
+          <mat-icon matSuffix (click)="togglePassword()">{{ isEnterPassword ? 'visibility_off' : 'visibility' }}
+          </mat-icon>
+          <mat-error>wubdiwub</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Confirm</mat-label>
+          <input matInput formControlName="confirmPassword" [type]="isConfirmPassword ? 'password' : 'text'" placeholder="Confirm Secret">
+          <mat-icon matSuffix (click)="toggleConfirmPassword()">{{ isConfirmPassword ? 'visibility_off' : 'visibility' }}
+          </mat-icon>
+          <mat-error *ngIf="isSamePassword()">wubdiwub</mat-error>
+        </mat-form-field>
+        <div class="w-full flex flex-row justify-content-between pb-2">
+          <span></span>
+          <button mat-raised-button color="primary" (click)="signIn()" [disabled]="!isValid()">
+            <mat-icon>check</mat-icon>
+            <span>Sign-In</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!--  Mobile View-->
+    <div *ngIf="(isHandset$ | async) === true">
+    </div>
+  </form>
+</div>
+
+<app-success *ngIf="getUsername()!== null && !isLogin()" [user]="getUsername()"></app-success>

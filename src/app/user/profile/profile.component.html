@@ -1,18 +1,54 @@
 <div class="flex justify-content-center align-items-center align-content-center py-4">
   <div class="flex flex-column justify-content-center align-content-center align-items-center w-full mt-5"
-       *ngIf="(isHandset$ | async) === false">
-    <h1>Profil</h1>
-    <div class="border-2 border-black-alpha-90 w-10 border-round-md relative">
-      <img src="assets/img/fallback.jpg" class="profil-img absolute absolute-position" alt="Profile image">
-      <div class="flex w-full justify-content-center">
-        <div class="flex flex-column w-10 justify-content-start">
-          <p class="text-center font-bold text-xl"> {{ username() }}</p>
+       *ngIf="(isPhone$ | async) === false">
+    <div class="border-2 border-black-alpha-90 w-10 border-round-md flex justify-content-center flex-column">
+      <div class="flex flex-column align-items-center">
+        <div class="w-full flex justify-content-center py-2 px-2">
+          <img src="assets/img/fallback.jpg" class="w-auto h-8rem profile-img">
+        </div>
+      </div>
+      <app-horizontal-line sectionText="Account"></app-horizontal-line>
+      <div class="grid text-lg">
+        <div class="col-2 sm:col-2 md:col-2 lg:col-1 col-offset-1 font-bold"><p>Username</p></div>
+        <div class="col-2 sm:col-4 md:col-4 lg:col-4 col-offset-1"><p>{{username()}}</p></div>
+        <div class="col-7 sm:col-4 md:col-4 lg:col-5"></div>
+
+        <div class="col-2 sm:col-2 md:col-2 lg:col-1 col-offset-1 font-bold"><p>Display</p></div>
+        <div class="col-2 sm:col-4 md:col-4 lg:col-4 col-offset-1"><p>{{displayName()}}</p></div>
+        <div class="col-7 sm:col-4 md:col-4 lg:col-5"></div>
+
+        <div class="col-2 sm:col-2 md:col-2 lg:col-1 col-offset-1 font-bold"><p>E-Mail</p></div>
+        <div class="col-2 sm:col-6 md:col-6 lg:col-6 col-offset-1"><p class="email-container">{{email()}} <span class="verification-status" [ngClass]="verified() ? 'verified' : 'not-verified'">{{verificationString()}}</span></p></div>
+        <div class="col-7 sm:col-2 md:col-2 lg:col-3"></div>
+
+        <div class="col-2 sm:col-2 md:col-2 lg:col-1 col-offset-1 font-bold"><p>Tier</p></div>
+        <div class="col-2 sm:col-6 md:col-6 lg:col-6 col-offset-1"><p [ngClass]="accountTierClass()">{{accountTier().name}}<span ></span></p></div>
+        <div class="col-7 sm:col-2 md:col-2 lg:col-3"></div>
+
+        <div class="col-2 sm:col-2 md:col-2 lg:col-1 col-offset-1 font-bold"><p>Since</p></div>
+        <div class="col-2 sm:col-4 md:col-4 lg:col-4 col-offset-1"><p>{{since() | date}}</p></div>
+        <div class="col-7 sm:col-4 md:col-4 lg:col-5"></div>
+
+      </div>
+      <app-horizontal-line sectionText="Personal"></app-horizontal-line>
+      <div class="grid text-lg">
+        <div class="col-2 sm:col-2 md:col-2 lg:col-1 col-offset-1 font-bold"><p>Name</p></div>
+        <div class="col-2 sm:col-4 md:col-4 lg:col-4 col-offset-1"><p>{{name()}}</p></div>
+        <div class="col-7 sm:col-4 md:col-4 lg:col-5"></div>
+
+        <div class="col-2 sm:col-2 md:col-2 lg:col-1 col-offset-1 font-bold"><p>Birthdate</p></div>
+        <div class="col-2 sm:col-4 md:col-4 lg:col-4 col-offset-1"><p>{{birth() | date}}</p></div>
+        <div class="col-7 sm:col-4 md:col-4 lg:col-5"></div>
 
         </div>
+        <app-horizontal-line sectionText="Privacy"></app-horizontal-line>
+      <div class="grid text-lg">
+        <div class="col-2 sm:col-2 md:col-2 lg:col-1 col-offset-1 font-bold"><p>Transparency</p></div>
+        <div class="col-2 sm:col-4 md:col-4 lg:col-4 col-offset-1"><mat-slide-toggle class="pt-3" [checked]="publicTransparency()" (change)="updatePublicTransparency()"></mat-slide-toggle></div>
+        <div class="col-7 sm:col-4 md:col-4 lg:col-5"></div>
       </div>
     </div>
   </div>
-  <div class="" *ngIf="(isHandset$ | async) === true">
-    <h1>Profil</h1>
+  <div *ngIf="(isPhone$ | async) === true">
   </div>
 </div>
