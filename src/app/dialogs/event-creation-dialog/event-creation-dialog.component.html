@@ -1,0 +1,47 @@
+<div class="w-full h-full flex justify-content-center align-content-center">
+  <form [formGroup]="fgEvent">
+    <mat-form-field appearance="fill">
+      <mat-label>Event Name</mat-label>
+      <input matInput formControlName="name" placeholder="Event Name">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Von</mat-label>
+      <input matInput [matDatepicker]="pickerVon" formControlName="von" placeholder="From">
+      <mat-datepicker-toggle matIconSuffix [for]="pickerVon"></mat-datepicker-toggle>
+      <mat-datepicker #pickerVon></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Bis</mat-label>
+      <input matInput [matDatepicker]="pickerBis" formControlName="von" placeholder="From">
+      <mat-datepicker-toggle matIconSuffix [for]="pickerBis"></mat-datepicker-toggle>
+      <mat-datepicker #pickerBis></mat-datepicker>
+    </mat-form-field>
+    <form [formGroup]="fgAddress">
+      <mat-form-field appearance="fill">
+        <mat-label>Country</mat-label>
+        <input matInput formControlName="country" placeholder="country">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Zip</mat-label>
+        <input matInput formControlName="zip" placeholder="Zip">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>City</mat-label>
+        <input matInput formControlName="city" placeholder="City">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Street</mat-label>
+        <input matInput formControlName="street" placeholder="Street">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>House Number</mat-label>
+        <input matInput formControlName="number" placeholder="House Number">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Addition</mat-label>
+        <input matInput formControlName="addition" placeholder="Addition">
+      </mat-form-field>
+    </form>
+    <button mat-raised-button color="primary" type="submit" (click)="submit()">Submit</button>
+  </form>
+</div>

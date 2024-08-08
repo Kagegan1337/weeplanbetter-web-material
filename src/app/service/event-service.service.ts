@@ -1,37 +1,26 @@
-import {Injectable} from '@angular/core';
-import { HttpClient, HttpParams } from "@angular/common/http";
-import {EventDto, EventOverviewDto} from "../model/dto/event/event-dto";
+import { Injectable } from '@angular/core';
+import {HttpClient, HttpParams} from "@angular/common/http";
+import {EventOverviewEntry} from "../model/dto/event/event-overview-entry";
 import {environment} from "../enviroment";
-import {EventCreationResponseDto} from "../model/dto/event-creation-response-dto";
-import {EventCreationDto} from "../model/dto/event-creation-dto";
-import {AuthserviceService} from "./authservice.service";
+import {EventCreationDto} from "../model/dto/event/event-creation-dto";
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventServiceService {
 
-  private baseUrl = environment.apiUrl;
+  private baseUrl: string = environment.apiUrl;
+  constructor(private http: HttpClient) { }
 
-  constructor(private http: HttpClient, private authService: AuthserviceService) {
-  }
-
-  public getEventsForUser(userId: string) {
+  public getEventsForUser(userId:string) {
     let params = new HttpParams();
     params = params.set("userId", userId);
-    return this.http.get<EventOverviewDto[]>(`${this.baseUrl}/events/all`, {params})
+    return this.http.get<EventOverviewEntry[]>(`${this.baseUrl}/events/all`, {params});
   }
 
-  public getEventDetails(eventId: string, userId: string) {
+  public postNewEvent(eventCreationDto: EventCreationDto, accountId: string) {
     let params = new HttpParams();
-    params = params.set("eventId", eventId);
-    params = params.set("userId", userId);
-    return this.http.get<EventOverviewDto[]>(`${this.baseUrl}/events/detail`, {params})
-  }
-
-  saveEvent(eventCreationDto: EventCreationDto) {
-    let params = new HttpParams();
-    params = params.set('accountId', this.authService.getUserIdFromToken())
-    return this.http.put<EventCreationResponseDto>(`${this.baseUrl}/events/create`, eventCreationDto, {params})
+    params = params.set("accountId",accountId);
+    return this.http.post(`${this.baseUrl}/events/create`,{eventCreationDto},{params});
   }
 }

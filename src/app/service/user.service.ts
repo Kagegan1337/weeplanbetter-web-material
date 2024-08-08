@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {AuthserviceService} from "./authservice.service";
 import { HttpClient, HttpParams } from "@angular/common/http";
-import {LoginRequest} from "../model/login-request";
-import {LoginResponse} from "../model/login-response";
+import {LoginRequest} from "../model/request/login-request";
+import {LoginResponse} from "../model/response/login-response";
 import {environment} from "../enviroment";
 import {SignInRequest} from "../model/request/sign-in-request";
 import {SignInResponse} from "../model/response/sign-in-response";
