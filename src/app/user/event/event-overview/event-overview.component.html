@@ -1,3 +1,19 @@
-<div class="w-full flex justify-content-center">
-  <button mat-raised-button (click)="openDialog()">New Event</button>
+<div class="w-full flex flex-column align-items-center">
+  <div class="w-10 grid my-5">
+    <div *ngFor="let event of events" class="col-4 p-2">
+      <mat-card>
+        <mat-card-header class="text-xl font-bold pb-2">{{ event.name }}</mat-card-header>
+        <mat-card-content class="flex flex-column align-content-start">
+          <span>{{ event.start | date:'dd.MM.YYYY' }} - {{ event.end | date: 'dd.MM.YYYY' }}</span>
+          <span>{{ event.address.zip }} {{ event.address.city }}</span>
+          <span>{{ event.address.street }} {{ event.address.number }}</span>
+          <span>{{ event.address.country }}</span>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="w-full flex justify-content-center">
+    <button mat-raised-button (click)="openDialog()">New Event</button>
+  </div>
 </div>

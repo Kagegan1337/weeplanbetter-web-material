@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
 import {MatInput, MatInputModule} from "@angular/material/input";
@@ -13,6 +13,7 @@ import {EventServiceService} from "../../service/event-service.service";
 import {AuthserviceService} from "../../service/authservice.service";
 import {EventCreationDto} from "../../model/dto/event/event-creation-dto";
 import {DatePipe} from "@angular/common";
+import {DialogRef} from "@angular/cdk/dialog";
 
 @Component({
   selector: 'app-event-creation-dialog',
@@ -33,8 +34,13 @@ import {DatePipe} from "@angular/common";
 export class EventCreationDialogComponent {
 
   constructor(private eventService: EventServiceService,
-              private authService: AuthserviceService) {
+              private authService: AuthserviceService,
+              public dialogRef: DialogRef<void>) {
   }
+
+  //Emitter
+  @Output()
+  protected onSuccess: EventEmitter<void> = new EventEmitter<void>();
 
   fgEvent = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -87,12 +93,14 @@ export class EventCreationDialogComponent {
   }
 
   submit() {
+    let contributors = [];
+    contributors.push(this.authService.getUserIdFromToken());
     const eventCreationDto: EventCreationDto = {
       type: "Event",
       name: this.getEventName(),
       von: this.getVon(),
       bis: this.getBis(),
-      contributors: [],
+      contributors: contributors,
       address: {
         country: this.getEventCountry(),
         zip: this.getEventZip(),
@@ -102,10 +110,10 @@ export class EventCreationDialogComponent {
         number: this.getEventNumber()
       }
     };
-    console.log(eventCreationDto);
     this.eventService.postNewEvent(eventCreationDto, this.authService.getUserIdFromToken()).subscribe({
       next: () => {
-        console.log("EVENT SEND")
+        this.dialogRef.close()
+        this.onSuccess.emit();
       }
     })
   }

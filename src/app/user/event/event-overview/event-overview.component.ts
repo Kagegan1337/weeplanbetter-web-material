@@ -7,12 +7,17 @@ import {MatDialog} from "@angular/material/dialog";
 import {LoginFailureDialogComponent} from "../../../dialogs/login-failure-dialog/login-failure-dialog.component";
 import {EventCreationDialogComponent} from "../../../dialogs/event-creation-dialog/event-creation-dialog.component";
 import {MatButton, MatButtonModule} from "@angular/material/button";
+import {MatCardModule} from "@angular/material/card";
+import {DatePipe, NgForOf} from "@angular/common";
 
 @Component({
   selector: 'app-event-overview',
   standalone: true,
   imports: [
     MatButtonModule,
+    MatCardModule,
+    NgForOf,
+    DatePipe,
 
   ],
   templateUrl: './event-overview.component.html',
@@ -20,7 +25,7 @@ import {MatButton, MatButtonModule} from "@angular/material/button";
 })
 export class EventOverviewComponent implements OnInit{
 
-  private events: EventOverviewEntry[] = [];
+  protected events: EventOverviewEntry[] = [];
 
   constructor(private eventService: EventServiceService,
               private authService: AuthserviceService,

@@ -21,6 +21,6 @@ export class EventServiceService {
   public postNewEvent(eventCreationDto: EventCreationDto, accountId: string) {
     let params = new HttpParams();
     params = params.set("accountId",accountId);
-    return this.http.post(`${this.baseUrl}/events/create`,{eventCreationDto},{params});
+    return this.http.post<string>(`${this.baseUrl}/events/create`,eventCreationDto,{params});
   }
 }
